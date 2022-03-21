@@ -10,7 +10,7 @@ import com.tp.testrap.databinding.UpcomingMovieRowBinding
 
 enum class TypeAdapter { POPULAR, TOP_RAITED, UP_COMING }
 
-class GenericAdapter(private val moviesAdapter: MovieAdapter, private val type: TypeAdapter) :
+class GenericAdapter(private val moviesAdapter: MoviesListAdapter, private val type: TypeAdapter) :
     RecyclerView.Adapter<BaseConcatHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseConcatHolder<*> {
@@ -57,23 +57,23 @@ class GenericAdapter(private val moviesAdapter: MovieAdapter, private val type: 
     override fun getItemCount() = 1
 
     private inner class PopularMovieViewHolder(val binding: PopularMovieRowBinding) :
-        BaseConcatHolder<MovieAdapter>(binding.root) {
-        override fun bind(adapter: MovieAdapter) {
+        BaseConcatHolder<MoviesListAdapter>(binding.root) {
+        override fun bind(adapter: MoviesListAdapter) {
             binding.rvPopularMovies.adapter = adapter
         }
 
     }
 
     private inner class TopRatedViewHolder(val binding: TopRatedMoviesRowBinding) :
-        BaseConcatHolder<MovieAdapter>(binding.root) {
-        override fun bind(adapter: MovieAdapter) {
+        BaseConcatHolder<MoviesListAdapter>(binding.root) {
+        override fun bind(adapter: MoviesListAdapter) {
             binding.rvTopRatedMovies.adapter = adapter
         }
     }
 
     private inner class UpcomingViewHolder(val binding: UpcomingMovieRowBinding) :
-        BaseConcatHolder<MovieAdapter>(binding.root) {
-        override fun bind(adapter: MovieAdapter) {
+        BaseConcatHolder<MoviesListAdapter>(binding.root) {
+        override fun bind(adapter: MoviesListAdapter) {
             binding.rvUpcomingMovies.adapter = adapter
         }
     }

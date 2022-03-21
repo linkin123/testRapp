@@ -3,6 +3,7 @@ package com.tp.testrap.ui.movie.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,13 +22,12 @@ import com.tp.testrap.repository.MovieRepositoryImpl
 import com.tp.testrap.repository.RetrofitClient
 import com.tp.testrap.ui.gone
 import com.tp.testrap.ui.movie.adapters.GenericAdapter
-import com.tp.testrap.ui.movie.adapters.MovieAdapter
+import com.tp.testrap.ui.movie.adapters.MoviesListAdapter
+import com.tp.testrap.ui.movie.adapters.OnOption
 import com.tp.testrap.ui.movie.adapters.TypeAdapter
 import com.tp.testrap.ui.visible
 
-class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieClikListener {
-
-
+class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
     private lateinit var binding: FragmentMovieBinding
     private val viewmodel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
@@ -39,6 +39,13 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     }
 
     private lateinit var concatAdapter: ConcatAdapter
+    private var popularAdapter = MoviesListAdapter(this)
+    private var topRaitedAdapter = MoviesListAdapter(this)
+    private var upComingAdapter = MoviesListAdapter(this)
+
+    private var popularList = listOf<Movie>()
+    private var topRaitedList = listOf<Movie>()
+    private var upComingList = listOf<Movie>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,6 +58,22 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private fun onclicks() {
         binding.mToolbar.actionBar.ivBack.setOnClickListener {
             activity?.finish()
+        }
+
+        binding.include.search.addTextChangedListener { edit ->
+            if (!edit.isNullOrEmpty()) {
+                submitList(
+                    popularList.getFilterWith(edit.toString()),
+                    topRaitedList.getFilterWith(edit.toString()),
+                    upComingList.getFilterWith(edit.toString())
+                )
+            } else {
+                submitList(
+                    popularList,
+                    topRaitedList,
+                    upComingList
+                )
+            }
         }
     }
 
@@ -68,33 +91,22 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
                 }
                 is Resource.Success -> {
                     binding.progressBar.gone()
+                    with(result.data) {
+                        popularList = first.results
+                        topRaitedList = second.results
+                        upComingList = third.results
+                    }
+                    submitList(popularList, topRaitedList, upComingList)
+
                     concatAdapter.apply {
                         addAdapter(
-                            0,
-                            GenericAdapter(
-                                MovieAdapter(
-                                    result.data.first.results,
-                                    this@MovieFragment
-                                ), TypeAdapter.POPULAR
-                            )
+                            0, GenericAdapter(popularAdapter, TypeAdapter.POPULAR)
                         )
                         addAdapter(
-                            1,
-                            GenericAdapter(
-                                MovieAdapter(
-                                    result.data.second.results,
-                                    this@MovieFragment
-                                ), TypeAdapter.TOP_RAITED
-                            )
+                            1, GenericAdapter(topRaitedAdapter, TypeAdapter.TOP_RAITED)
                         )
                         addAdapter(
-                            2,
-                            GenericAdapter(
-                                MovieAdapter(
-                                    result.data.third.results,
-                                    this@MovieFragment
-                                ), TypeAdapter.UP_COMING
-                            )
+                            2, GenericAdapter(upComingAdapter, TypeAdapter.UP_COMING)
                         )
                     }
                     binding.rvMovies.adapter = concatAdapter
@@ -107,10 +119,19 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
                 }
             }
         }
-
     }
 
-    override fun onMovieClick(movie: Movie) {
+    private fun submitList(
+        popularList: List<Movie>,
+        topRaitedList: List<Movie>,
+        upComingList: List<Movie>,
+    ) {
+        popularAdapter.submitList(popularList)
+        topRaitedAdapter.submitList(topRaitedList)
+        upComingAdapter.submitList(upComingList)
+    }
+
+    override fun click(movie: Movie) {
         val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailFragment(
             movie.id,
             movie.poster_path,
@@ -124,7 +145,12 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
         )
 
         findNavController().navigate(action)
+
     }
 
 
+}
+
+private fun List<Movie>.getFilterWith(text: String): List<Movie> {
+    return this.filter { it.title.contains(text, true) }
 }

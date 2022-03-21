@@ -5,6 +5,11 @@
 
     <data>
 
+        <variable
+            name="movie"
+            type="com.tp.testrap.data.model.Movie" />
+
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,6 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
+                app:imageURL="@{movie.poster_path}"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

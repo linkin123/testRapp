@@ -1,13 +1,12 @@
 package com.tp.testrap.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.tp.testrap.core.Resource
 import com.tp.testrap.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
 
 class MovieViewModel(private val repo : MovieRepository) : ViewModel(){
+
 
     fun fetchMainScreenMovies() = liveData(Dispatchers.IO){
         emit(Resource.Loading())

@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.tp.testrap.R
+import com.tp.testrap.application.AppConstants
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -19,7 +20,7 @@ fun View.invisible() {
     this.visibility = View.INVISIBLE
 }
 
-@BindingAdapter("imageURL")
+
 fun ImageView.loadImage(url: String?) {
     if (!url.isNullOrEmpty()) {
         Log.d("TAGGGGGG", "url : $url")
@@ -27,9 +28,10 @@ fun ImageView.loadImage(url: String?) {
     }
 }
 
+@BindingAdapter("imageURL")
 fun ImageView.loadImage2(url: String?) {
     if (!url.isNullOrEmpty()) {
         Log.d("TAGGGGGG", "url : $url")
-        Glide.with(context).load(url).placeholder(R.drawable.rapiiiii).into(this)
+        Glide.with(context).load("${AppConstants.BASE_IMAGE}${url}").placeholder(R.drawable.rapiiiii).into(this)
     }
 }
