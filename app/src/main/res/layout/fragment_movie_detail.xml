@@ -61,7 +61,6 @@
 
         </FrameLayout>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="120dp"
@@ -101,7 +100,6 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/frameLayout"
             tools:text="Movie Tittle" />
 
         <TextView
@@ -111,37 +109,38 @@
             android:drawablePadding="8dp"
             android:gravity="center"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/txt_release"
             app:drawableStartCompat="@drawable/ic_baseline_star_border_24"
             app:drawableTint="@color/white"
+            android:layout_margin="5dp"
             app:layout_constraintStart_toStartOf="@+id/txt_release"
-            app:layout_constraintTop_toTopOf="@+id/cardView"
             tools:text="7.1 (4123 reviews)" />
 
         <TextView
             android:id="@+id/txt_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:gravity="center"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
             app:drawableTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/txt_language"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/txt_raiting"
             tools:text="Release 20-11-20" />
 
         <TextView
             android:id="@+id/txt_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/ic_baseline_language_24"
             app:drawableTint="@color/white"
             app:layout_constraintStart_toStartOf="@+id/txt_release"
-            app:layout_constraintTop_toBottomOf="@+id/txt_release"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
             tools:text="lenguaje EN" />
 
         <LinearLayout
@@ -150,7 +149,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -227,7 +225,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Overview"
+            android:text="@string/overview"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -246,6 +244,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:text="Lorem ipsum dolor sit amet consectetur adipiscing elit primis eleifend, consequat iaculis vestibulum inceptos maecenas ultricies fusce sollicitudin. Neque ad nulla et justo sociis penatibus sagittis torquent maecenas, donec montes interdum ultricies sed curae sem euismod. Aliquam cursus leo egestas donec odio litora placerat torquent, lacus cum vehicula diam facilisi primis enim vivamus, metus ornare habitasse mauris cras rhoncus sociis." />
+
+
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/btn_see_trailer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:text="ver trailer"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

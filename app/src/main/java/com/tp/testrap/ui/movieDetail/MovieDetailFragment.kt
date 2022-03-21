@@ -20,9 +20,10 @@ import com.tp.testrap.repository.RetrofitClient
 import com.tp.testrap.repository.VideoRepositoryImpl
 import com.tp.testrap.ui.activities.VideoActivity
 import com.tp.testrap.ui.gone
+import com.tp.testrap.ui.movie.fragments.MovieFragmentDirections
 import com.tp.testrap.ui.visible
 
-class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
+class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnClickListener {
 
     private lateinit var binding: FragmentMovieDetailBinding
     private val args by navArgs<MovieDetailFragmentArgs>()
@@ -46,7 +47,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     private fun setUpImages() {
         with(binding) {
             imgMovie.paintImages(requireContext(), args.posterImageUrl)
-            imgMovie.paintImages(requireContext(), args.backgroundIMageUrl)
             imgBackground.paintImages(requireContext(), args.backgroundIMageUrl)
             txtTitle.text = args.title
             txtOverview.text = args.overview
@@ -57,31 +57,13 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     }
 
     private fun onclicks() {
-        binding.imgMovie.setOnClickListener {
-            videosViewmodel.getVideoById(args.id.toString()).observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Resource.Loading -> {
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        binding.progressBar.gone()
-                        startActivity(
-                            Intent(
-                                activity,
-                                VideoActivity::class.java
-                            ).putExtra(VideoActivity.KEY, result.data[0].url)
-                        )
-                    }
-                    is Resource.Failure -> {
-                        binding.progressBar.gone()
-                    }
-                }
-
+        binding.apply {
+            imgMovie.setOnClickListener(this@MovieDetailFragment)
+            btnSeeTrailer.setOnClickListener(this@MovieDetailFragment)
+            imgBackground.setOnClickListener(this@MovieDetailFragment)
+            mToolbar.actionBar.ivBack.setOnClickListener {
+                findNavController().navigateUp()
             }
-        }
-
-        binding.mToolbar.actionBar.ivBack.setOnClickListener {
-            findNavController().navigateUp()
         }
     }
 
@@ -92,6 +74,35 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     companion object {
         const val BASE_IMAGE = "https://image.tmdb.org/t/p/w500/"
+    }
+
+    override fun onClick(p0: View?) {
+        videosViewmodel.getVideoById(args.id.toString()).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Resource.Loading -> {
+                    binding.progressBar.visible()
+                }
+                is Resource.Success -> {
+                    binding.progressBar.gone()
+                    startActivity(
+                        Intent(
+                            activity,
+                            VideoActivity::class.java
+                        ).apply {
+                            putExtras(Bundle().apply {
+                                putString(VideoActivity.KEY, result.data[0].url)
+                                putString(VideoActivity.NAME, args.title)
+                                putString(VideoActivity.SITE, result.data[0].site)
+                                putString(VideoActivity.TYPE, result.data[0].type)
+                            })
+                        }
+                    )
+                }
+                is Resource.Failure -> {
+                    binding.progressBar.gone()
+                }
+            }
+        }
     }
 
 

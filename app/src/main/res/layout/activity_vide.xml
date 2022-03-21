@@ -23,10 +23,57 @@
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/videoPlayer"
             android:layout_width="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="280dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mToolbar"
-            android:layout_height="280dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mToolbar" />
+
+        <TextView
+            android:id="@+id/tv_type_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/tipo_de_video"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/videoPlayer" />
+
+        <TextView
+            android:id="@+id/tv_value_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_type_video"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type_video"
+            tools:text="trailer"
+            tools:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_site"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/fuente"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_type" />
+
+        <TextView
+            android:id="@+id/tv_site_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_site"
+            app:layout_constraintTop_toBottomOf="@+id/tv_site"
+            tools:text="YOUTUBEEEEE"
+            tools:textColor="@color/white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

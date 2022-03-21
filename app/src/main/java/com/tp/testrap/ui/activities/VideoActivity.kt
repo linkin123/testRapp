@@ -10,6 +10,9 @@ import com.tp.testrap.databinding.ActivityVideBinding
 
 class VideoActivity : YouTubeBaseActivity() {
     companion object {
+        val TYPE = "TYPE"
+        val SITE = "SITE"
+        val NAME = "NAME"
         const val KEY = "ID_KEY"
     }
 
@@ -22,11 +25,32 @@ class VideoActivity : YouTubeBaseActivity() {
         binding = ActivityVideBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getIntents()
+        initVideoPlayer()
+        onclicks()
+    }
+
+    private fun onclicks() {
+        binding.mToolbar.actionBar.ivBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initVideoPlayer() {
         binding.videoPlayer.initialize(YoutubeConfig.secret, mOnListener)
     }
 
     private fun getIntents() {
         setUpvideo(intent.extras?.getString(KEY))
+        setUpInfo(intent.extras)
+    }
+
+
+    private fun setUpInfo(extras: Bundle?) {
+        with(binding){
+            mToolbar.actionBar.tvTitle.text = extras?.getString(NAME)
+            tvValueType.text = extras?.getString(TYPE)
+            tvSiteValue.text = extras?.getString(SITE)
+        }
     }
 
     private fun setUpvideo(key: String?) {

@@ -8,4 +8,7 @@
     <string name="bookmark">bookmark</string>
     <string name="buscar">Buscar</string>
     <string name="search">search</string>
+    <string name="tipo_de_video">tipo de video :</string>
+    <string name="fuente">fuente:</string>
+    <string name="overview">Overview</string>
 </resources>

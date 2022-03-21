@@ -20,6 +20,6 @@ private fun ResultsItem.toVideoLocal(): VideosLocal {
         type = this.type ?: "",
         oficial = this.official ?: false,
         url = this.key ?: "",
-        site + this.site ?: ""
+        site = this.site ?: ""
     )
 }
