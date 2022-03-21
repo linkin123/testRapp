@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">testRap</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top rated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="share">Share</string>
+    <string name="favorites">Favorites</string>
+    <string name="bookmark">bookmark</string>
+    <string name="buscar">Buscar</string>
+    <string name="search">search</string>
+</resources>
