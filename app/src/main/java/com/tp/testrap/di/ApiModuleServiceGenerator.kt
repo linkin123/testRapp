@@ -1,4 +1,4 @@
-package com.tp.testrap.repository
+package com.tp.testrap.di
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -7,16 +7,28 @@ import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.tp.testrap.BuildConfig
 import com.tp.testrap.application.AppConstants
+import com.tp.testrap.repository.WebService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 import javax.net.ssl.HttpsURLConnection
 
-object ServiceGenerator {
+@Module
+@InstallIn(SingletonComponent::class)
+object ApiModuleServiceGenerator {
 
-    fun RetrofitEncrypt(): Retrofit {
+    @Singleton
+    @Provides
+    fun service() = retrofitEncrypt().create(WebService::class.java)
+
+    fun retrofitEncrypt(): Retrofit {
         return retrofitBuilderEncrypt().client(httpBuilderEncrypt().build()).build()
     }
 
@@ -59,7 +71,7 @@ object ServiceGenerator {
                     .response("Response")
                     .log(Log.VERBOSE)
                     .build()
-            ).addInterceptor(BasicAuthInterceptor("totalplayfoodws", "t0T4pl4yN1mda"))
+            )
     }
 
 
