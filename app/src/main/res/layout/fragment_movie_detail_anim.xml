@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            android:fitsSystemWindows="true"
+            android:id="@+id/coordinator"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_see_trailer"
+            android:theme="@style/CollapseBarTheme">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/AppTheme">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:minHeight="60dp"
+                    app:collapsedTitleGravity="start"
+                    app:collapsedTitleTextAppearance="@style/CollapseBarThemeText"
+                    app:collapsedTitleTextColor="@color/white"
+                    app:contentScrim="@color/purple_500"
+                    app:expandedTitleMarginBottom="175dp"
+                    app:expandedTitleMarginStart="150dp"
+                    app:expandedTitleTextAppearance="@style/ExpandedBarThemeText"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:maxLines="1"
+                    tools:title="The Dark Night">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/chowa_image_extends"
+                            app:layout_collapseMode="parallax"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:background="@drawable/chowa_image_extends"
+                            tools:layout_editor_absoluteX="0dp" />
+
+                        <TextView
+                            android:id="@+id/txt_raiting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_baseline_star_border_24"
+                            app:drawableTint="@color/white"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_release"
+                            app:layout_constraintStart_toStartOf="@+id/txt_release"
+                            tools:text="7.1 (4123 reviews)" />
+
+                        <TextView
+                            android:id="@+id/txt_release"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
+                            app:drawableTint="@color/white"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_language"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cardView"
+                            tools:text="Release 20-11-20" />
+
+                        <TextView
+                            android:id="@+id/txt_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_baseline_language_24"
+                            app:drawableTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/txt_release"
+                            tools:text="lenguaje EN" />
+
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView"
+                            android:layout_width="120dp"
+                            android:layout_height="170dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="120dp"
+                            android:layout_marginBottom="16dp"
+                            android:clipToPadding="true"
+                            app:cardCornerRadius="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/img_movie"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/ic_launcher" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_marginTop="10dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_arrow"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <include
+                layout="@layout/content_layout"
+                android:id="@+id/contentLayout" />
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/btn_see_trailer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:text="ver trailer"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
