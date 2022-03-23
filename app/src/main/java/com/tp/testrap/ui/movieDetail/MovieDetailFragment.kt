@@ -19,7 +19,7 @@ import com.tp.testrap.ui.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnClickListener {
+class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.OnClickListener {
 
     private lateinit var binding: FragmentMovieDetailAnimBinding
     private val args by navArgs<MovieDetailFragmentArgs>()
