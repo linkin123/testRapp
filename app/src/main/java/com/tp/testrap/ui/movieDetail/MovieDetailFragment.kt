@@ -10,28 +10,20 @@ import androidx.navigation.fragment.navArgs
 import com.tp.testrap.R
 import com.tp.testrap.application.AppConstants.BASE_IMAGE
 import com.tp.testrap.core.Resource
-import com.tp.testrap.data.remote.RemoteVideosDataSource
 import com.tp.testrap.databinding.FragmentMovieDetailBinding
 import com.tp.testrap.presentation.VideoViewModel
-import com.tp.testrap.presentation.VideoViewModelFactory
-import com.tp.testrap.repository.RetrofitClient
-import com.tp.testrap.repository.VideoRepositoryImpl
 import com.tp.testrap.ui.activities.VideoActivity
 import com.tp.testrap.ui.gone
 import com.tp.testrap.ui.loadImage
 import com.tp.testrap.ui.visible
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnClickListener {
 
     private lateinit var binding: FragmentMovieDetailBinding
     private val args by navArgs<MovieDetailFragmentArgs>()
-    private val videosViewmodel by viewModels<VideoViewModel> {
-        VideoViewModelFactory(
-            VideoRepositoryImpl(
-                RemoteVideosDataSource(RetrofitClient.webService)
-            )
-        )
-    }
+    private val videosViewmodel by viewModels<VideoViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

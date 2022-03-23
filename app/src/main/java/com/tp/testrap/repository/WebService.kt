@@ -25,10 +25,3 @@ interface WebService {
     suspend fun getVideosByIdMovie(@Path("idMovie") idMovie: String, @Query("api_key") apiKey: String, @Query("language") language: String): VideoResponse
 
 }
-
-object RetrofitClient{
-    val webService: WebService by lazy {
-        ServiceGenerator.RetrofitEncrypt().create(WebService::class.java)
-
-    }
-}

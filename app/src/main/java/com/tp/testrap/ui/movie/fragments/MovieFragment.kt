@@ -11,32 +11,22 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.tp.testrap.R
 import com.tp.testrap.core.Resource
-import com.tp.testrap.data.local.AppDatabase
-import com.tp.testrap.data.local.LocalMovieDataSource
 import com.tp.testrap.data.model.Movie
-import com.tp.testrap.data.remote.RemoteMovieDataSource
 import com.tp.testrap.databinding.FragmentMovieBinding
 import com.tp.testrap.presentation.MovieViewModel
-import com.tp.testrap.presentation.MovieViewModelFactory
-import com.tp.testrap.repository.MovieRepositoryImpl
-import com.tp.testrap.repository.RetrofitClient
 import com.tp.testrap.ui.gone
 import com.tp.testrap.ui.movie.adapters.GenericAdapter
 import com.tp.testrap.ui.movie.adapters.MoviesListAdapter
 import com.tp.testrap.ui.movie.adapters.OnOption
 import com.tp.testrap.ui.movie.adapters.TypeAdapter
 import com.tp.testrap.ui.visible
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
     private lateinit var binding: FragmentMovieBinding
-    private val viewmodel by viewModels<MovieViewModel> {
-        MovieViewModelFactory(
-            MovieRepositoryImpl(
-                RemoteMovieDataSource(RetrofitClient.webService),
-                LocalMovieDataSource(AppDatabase.getDatabase(requireContext()).movieDao())
-            )
-        )
-    }
+
+    private val viewmodel by viewModels<MovieViewModel>()
 
     private lateinit var concatAdapter: ConcatAdapter
     private var popularAdapter = MoviesListAdapter(this)

@@ -1,30 +1,24 @@
 package com.tp.testrap.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.tp.testrap.core.Resource
-import com.tp.testrap.repository.MovieRepository
 import com.tp.testrap.repository.VideoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class VideoViewModel(private val repo : VideoRepository) : ViewModel() {
+@HiltViewModel
+class VideoViewModel @Inject constructor(private val repo: VideoRepository) : ViewModel() {
 
-    fun getVideoById(idMovie : String) = liveData(Dispatchers.IO){
+    fun getVideoById(idMovie: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
-        try{
+        try {
             emit(Resource.Success(repo.getVideosById(idMovie)))
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Resource.Failure(e))
         }
     }
 
-
-}
-
-class VideoViewModelFactory(private val repo : VideoRepository): ViewModelProvider.Factory{
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(VideoRepository::class.java).newInstance(repo)
-    }
 
 }
