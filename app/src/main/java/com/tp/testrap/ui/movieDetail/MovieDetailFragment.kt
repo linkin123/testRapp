@@ -10,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.tp.testrap.R
 import com.tp.testrap.application.AppConstants.BASE_IMAGE
 import com.tp.testrap.core.Resource
-import com.tp.testrap.databinding.FragmentMovieDetailBinding
+import com.tp.testrap.databinding.FragmentMovieDetailAnimBinding
 import com.tp.testrap.presentation.VideoViewModel
 import com.tp.testrap.ui.activities.VideoActivity
 import com.tp.testrap.ui.gone
@@ -21,14 +21,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnClickListener {
 
-    private lateinit var binding: FragmentMovieDetailBinding
+    private lateinit var binding: FragmentMovieDetailAnimBinding
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val videosViewmodel by viewModels<VideoViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMovieDetailBinding.bind(view)
-        setUpToolbar()
+        binding = FragmentMovieDetailAnimBinding.bind(view)
         onclicks()
         setUpImages()
     }
@@ -38,8 +37,8 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnCli
         with(binding) {
             imgMovie.loadImage("${BASE_IMAGE}${args.posterImageUrl}")
             imgBackground.loadImage("${BASE_IMAGE}${args.backgroundIMageUrl}")
-            txtTitle.text = args.title
-            txtOverview.text = args.overview
+            toolbar.title = args.title
+            contentLayout.txtOverview.text = args.overview
             txtLanguage.text = "Lenguaje : ${args.language}"
             txtRaiting.text = "${args.voteAverage} / ${args.voteCount} Reviews"
             txtRelease.text = "Released ${args.releaseDate}"
@@ -51,14 +50,10 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), View.OnCli
             imgMovie.setOnClickListener(this@MovieDetailFragment)
             btnSeeTrailer.setOnClickListener(this@MovieDetailFragment)
             imgBackground.setOnClickListener(this@MovieDetailFragment)
-            mToolbar.actionBar.ivBack.setOnClickListener {
+            toolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
         }
-    }
-
-    private fun setUpToolbar() {
-        binding.mToolbar.actionBar.tvTitle.text = args.title
     }
 
 

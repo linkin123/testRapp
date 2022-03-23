@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CollapseBarThemeText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="ExpandedBarThemeText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="CollapseBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimary">#F9F9F9</item>
+        <item name="colorPrimaryDark">#F9F9F9</item>
+        <item name="colorAccent">#0C7BCF</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowBackground">#50c2c2c2</item>
+        <item name="statusBarBackground">#50c2c2c2</item>
+    </style>
+
+
+    <style name="ToolbarColoredBackArrow" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:textColorSecondary">#FAFAFA</item>
+        <item name="android:textColor">#FAFAFA</item>
+    </style>
+
+    <style name="AppTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+
+</resources>

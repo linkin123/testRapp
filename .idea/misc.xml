@@ -5,14 +5,17 @@
       <map>
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/drawable-v24/gradient.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/drawable/gradient.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/drawable/ic_arrow.xml" value="0.25625" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.15260416666666668" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/drawable/ic_icon_search_bluegray.xml" value="0.259375" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/activity_vide.xml" value="0.268" />
+        <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/content_layout.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/custom_toolbar.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/fragment_food.xml" value="0.12819176654507555" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/fragment_movie.xml" value="0.12213740458015267" />
-        <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/fragment_movie_detail.xml" value="0.2" />
+        <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/fragment_movie_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/fragment_movie_detail_anim.xml" value="0.132" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/movie_item.xml" value="0.25" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/popular_movie_row.xml" value="0.17407407407407408" />
         <entry key="..\:/Users/Dell/Desktop/desarrollos/Android/jetpack/testRap/app/src/main/res/layout/search_bar.xml" value="0.24322916666666666" />
