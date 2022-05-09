@@ -25,6 +25,10 @@ data class MovieList(
     val results: List<Movie> = listOf()
 )
 
+data class MovieListAd(
+    val moviesList: List<MovieList> = listOf()
+)
+
 
 @Entity
 data class MovieEntity(

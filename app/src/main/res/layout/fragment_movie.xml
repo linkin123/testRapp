@@ -5,6 +5,18 @@
 
     <data>
 
+        <variable
+            name="list"
+            type="com.tp.testrap.data.model.MovieListAd" />
+
+        <variable
+            name="typeAdapter"
+            type="com.tp.testrap.ui.movie.adapters.TypeAdapter" />
+
+        <variable
+            name="option"
+            type="com.tp.testrap.ui.movie.adapters.OnOption" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,19 +60,47 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_movies"
+            android:id="@+id/rv_movies_1"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
+            app:list_adapter="@{list.moviesList.get(0).results}"
+            app:type="@{typeAdapter.POPULAR}"
+            app:option="@{option}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constraint" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movies_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            app:list_adapter="@{list.moviesList.get(1).results}"
+            app:type="@{typeAdapter.UP_COMING}"
+            app:option="@{option}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_movies_1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movies_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            app:list_adapter="@{list.moviesList.get(2).results}"
+            app:type="@{typeAdapter.UP_COMING}"
+            app:option="@{option}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_movies_2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
