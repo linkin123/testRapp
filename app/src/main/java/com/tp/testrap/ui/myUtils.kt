@@ -3,6 +3,7 @@ package com.tp.testrap.ui
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -56,3 +57,7 @@ fun RecyclerView.setAdapter(
     }
 
 }
+
+@BindingAdapter("list_adapter_null")
+fun TextView.setAdapterVisibility(list: List<Movie>?) =
+    if (!list.isNullOrEmpty()) this.gone() else this.visible()

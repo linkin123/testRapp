@@ -11,4 +11,6 @@
     <string name="tipo_de_video">tipo de video :</string>
     <string name="fuente">fuente:</string>
     <string name="overview">Overview</string>
+    <string name="no_hay_peliculas_en_esta_categoria">No hay peliculas en esta categoria</string>
+    <string name="no_hay_conexion_a_internet">No hay conexion a internet</string>
 </resources>

@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.tp.testrap.R
+import com.tp.testrap.core.CurrentConn
+import com.tp.testrap.core.InternetCheck
+import com.tp.testrap.core.InternetConnection
 import com.tp.testrap.core.Resource
 import com.tp.testrap.data.model.Movie
 import com.tp.testrap.data.model.MovieList
@@ -17,10 +20,7 @@ import com.tp.testrap.data.model.MovieListAd
 import com.tp.testrap.databinding.FragmentMovieBinding
 import com.tp.testrap.presentation.MovieViewModel
 import com.tp.testrap.ui.gone
-import com.tp.testrap.ui.movie.adapters.GenericAdapter
-import com.tp.testrap.ui.movie.adapters.MoviesListAdapter
 import com.tp.testrap.ui.movie.adapters.OnOption
-import com.tp.testrap.ui.movie.adapters.TypeAdapter
 import com.tp.testrap.ui.visible
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,7 +73,6 @@ class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
 
     private fun observers() {
         concatAdapter = ConcatAdapter()
-
         viewmodel.fetchMainScreenMovies().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -86,7 +85,19 @@ class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
                         topRaitedList = second.results
                         upComingList = third.results
                     }
-                    submitList(popularList, topRaitedList, upComingList)
+                    conexionAvaibled(popularList, topRaitedList, upComingList,
+                        isNetworkAvaible = {
+                            binding.tvNotConnection.gone()
+                            binding.rvMovies1.visible()
+                            binding.rvMovies2.visible()
+                            binding.rvMovies3.visible()
+                            submitList(popularList, topRaitedList, upComingList)
+                        }, isNetworkDisabled = {
+                            binding.tvNotConnection.visible()
+                            binding.rvMovies1.gone()
+                            binding.rvMovies2.gone()
+                            binding.rvMovies3.gone()
+                        })
                 }
                 is Resource.Failure -> {
                     binding.progressBar.gone()
@@ -97,12 +108,35 @@ class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
         }
     }
 
+    private fun conexionAvaibled(
+        popularList: List<Movie>,
+        topRaitedList: List<Movie>,
+        upComingList: List<Movie>,
+        isNetworkAvaible: () -> Unit,
+        isNetworkDisabled: () -> Unit,
+    ) {
+        if (popularList.isNullOrEmpty() && topRaitedList.isNullOrEmpty() && upComingList.isNullOrEmpty() && !InternetConnection.check(
+                requireContext()
+            ).isConected()
+        ) {
+            isNetworkDisabled.invoke()
+        } else {
+            isNetworkAvaible.invoke()
+        }
+    }
+
     private fun submitList(
         popularList: List<Movie>,
         topRaitedList: List<Movie>,
         upComingList: List<Movie>,
     ) {
-        binding.list = MovieListAd(listOf(MovieList(popularList), MovieList(topRaitedList), MovieList(upComingList) ))
+        binding.list = MovieListAd(
+            listOf(
+                MovieList(popularList),
+                MovieList(topRaitedList),
+                MovieList(upComingList)
+            )
+        )
     }
 
     override fun click(movie: Movie) {
@@ -123,6 +157,10 @@ class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
     }
 
 
+}
+
+private fun CurrentConn.isConected(): Boolean {
+    return (this == CurrentConn.IS_WIFI || this == CurrentConn.IS_MOBILE)
 }
 
 private fun List<Movie>.getFilterWith(text: String): List<Movie> {
