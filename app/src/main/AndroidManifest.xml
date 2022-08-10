@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -15,6 +21,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.activities.VideoActivity"
+            android:screenOrientation="portrait"
+
             android:exported="true" />
         <activity
             android:name=".ui.activities.MainActivity"

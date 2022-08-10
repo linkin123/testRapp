@@ -16,7 +16,7 @@ data class Movie(
     val release_date: String = "",
     val title: String = "",
     val video: Boolean = false,
-    val vote_avergage: Double = -1.0,
+    val vote_average: Float = 0F,
     val vote_count: Int = -1,
     val movie_type : String = ""
 )
@@ -50,8 +50,8 @@ data class MovieEntity(
     val tittle: String = "",
     @ColumnInfo(name = "video")
     val video: Boolean = false,
-    @ColumnInfo(name = "vote_avergage")
-    val vote_avergage: Double = -1.0,
+    @ColumnInfo(name = "vote_average")
+    val vote_average: Float = 0F,
     @ColumnInfo(name = "vote_count")
     val vote_count: Int = -1,
     @ColumnInfo(name = "movie_type")
@@ -78,7 +78,7 @@ fun MovieEntity.toMovie() : Movie = Movie(
     this.release_date,
     this.tittle,
     this.video,
-    this.vote_avergage,
+    this.vote_average,
     this.vote_count,
     this.movie_type
 )
@@ -95,7 +95,7 @@ fun Movie.toMovieEntity(movieType : String ) : MovieEntity = MovieEntity(
     this.release_date,
     this.title,
     this.video,
-    this.vote_avergage,
+    this.vote_average,
     this.vote_count,
     movie_type = movieType
 )

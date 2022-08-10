@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">testRap</string>
-    <string name="popular_movies">Popular Movies</string>
-    <string name="top_rated_movies">Top rated Movies</string>
-    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="popular_movies">Peliculas Populares</string>
+    <string name="top_rated_movies">Tendencia</string>
+    <string name="upcoming_movies">Proximos Estrenos</string>
     <string name="share">Share</string>
     <string name="favorites">Favorites</string>
     <string name="bookmark">bookmark</string>
@@ -10,5 +10,15 @@
     <string name="search">search</string>
     <string name="tipo_de_video">tipo de video :</string>
     <string name="fuente">fuente:</string>
-    <string name="overview">Overview</string>
+    <string name="overview">Descripción</string>
+    <string name="recomendados_para_ti">Recomendados para ti</string>
+    <string name="idioma">Idioma</string>
+    <string name="fecha">Fecha</string>
+    <string name="ver_trailer">ver trailer</string>
+    <string name="movie_poster">movie poster</string>
+    <string name="year">2013</string>
+    <string name="language">en</string>
+    <string name="ocho">8.0</string>
+
+    <dimen name="text_size_tittle_movies">20sp</dimen>
 </resources>

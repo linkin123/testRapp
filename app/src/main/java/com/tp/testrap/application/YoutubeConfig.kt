@@ -2,7 +2,7 @@ package com.tp.testrap.application
 
 object YoutubeConfig {
 
-    const val secret = "AIzaSyCyAQjszSFvPNa7WNefx_zGc3tcJ_xrxWw"
+    const val secret = "AIzaSyBJ_lF1gXzaiH4DJblaLlq2jKf9SQPmjAY"
 
 
 }

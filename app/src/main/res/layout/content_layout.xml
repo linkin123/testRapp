@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:showIn="@layout/fragment_movie_detail_anim"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_movie_detail_anim">
 
     <data>
 
@@ -30,17 +30,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
+                    app:cardCornerRadius="5dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_bookmark_border_24"
-                    app:tint="@color/white" />
+                    app:cardBackgroundColor="#FFFFFF">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bookmark"
-                    android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:id="@+id/tv_year"
+                        android:textColor="@color/black"
+                        tools:text="@string/year" />
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -58,17 +61,23 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_favorite_border_24"
-                    app:tint="@color/white" />
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#FFFFFF">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/favorites"
-                    android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:id="@+id/tv_language"
+                        android:textColor="@color/black"
+                        tools:text="@string/language" />
+
+
+                </androidx.cardview.widget.CardView>
+
 
             </LinearLayout>
 
@@ -85,17 +94,36 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout2"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_share_24"
-                    app:tint="@color/white" />
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#F6C700">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/share"
-                    android:textColor="@color/white" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ic_star" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:id="@+id/tv_raiting"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            tools:text="@string/ocho" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

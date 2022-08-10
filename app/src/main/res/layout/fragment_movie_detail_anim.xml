@@ -40,7 +40,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:fitsSystemWindows="true"
                 android:theme="@style/AppTheme">
 
@@ -67,7 +67,7 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/img_background"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
+                            android:layout_height="match_parent"
                             android:contentDescription="@string/app_name"
                             android:scaleType="centerCrop"
                             android:src="@drawable/chowa_image_extends"
@@ -75,47 +75,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:background="@drawable/chowa_image_extends"
                             tools:layout_editor_absoluteX="0dp" />
-
-                        <TextView
-                            android:id="@+id/txt_raiting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:drawablePadding="8dp"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            app:drawableStartCompat="@drawable/ic_baseline_star_border_24"
-                            app:drawableTint="@color/white"
-                            app:layout_constraintBottom_toTopOf="@+id/txt_release"
-                            app:layout_constraintStart_toStartOf="@+id/txt_release"
-                            tools:text="7.1 (4123 reviews)" />
-
-                        <TextView
-                            android:id="@+id/txt_release"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
-                            app:drawableTint="@color/white"
-                            app:layout_constraintBottom_toTopOf="@+id/txt_language"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/cardView"
-                            tools:text="Release 20-11-20" />
-
-                        <TextView
-                            android:id="@+id/txt_language"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="15dp"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            app:drawableStartCompat="@drawable/ic_baseline_language_24"
-                            app:drawableTint="@color/white"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/txt_release"
-                            tools:text="lenguaje EN" />
 
 
                         <androidx.cardview.widget.CardView
@@ -127,15 +86,16 @@
                             android:layout_marginBottom="16dp"
                             android:clipToPadding="true"
                             app:cardCornerRadius="8dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
                             <ImageView
                                 android:id="@+id/img_movie"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@mipmap/ic_launcher"
+                                android:contentDescription="@string/movie_poster" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -163,7 +123,7 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:id="@+id/btn_see_trailer"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -171,7 +131,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="10dp"
             android:textColor="@color/white"
-            android:text="ver trailer"
+            android:background="@drawable/background_border_white"
+            android:text="@string/ver_trailer"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content" />
 

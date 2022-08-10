@@ -39,9 +39,9 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.
             imgBackground.loadImage("${BASE_IMAGE}${args.backgroundIMageUrl}")
             toolbar.title = args.title
             contentLayout.txtOverview.text = args.overview
-            txtLanguage.text = "Lenguaje : ${args.language}"
-            txtRaiting.text = "${args.voteAverage} / ${args.voteCount} Reviews"
-            txtRelease.text = "Released ${args.releaseDate}"
+            contentLayout.tvLanguage.text = args.language
+            contentLayout.tvYear.text = args.releaseDate.substring(0, 4)
+            contentLayout.tvRaiting.text = args.voteAverage.toString()
         }
     }
 
@@ -72,10 +72,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.
                         ).apply {
                             putExtras(Bundle().apply {
                                 putString(VideoActivity.KEY, result.data[0].url)
-                                putString(VideoActivity.NAME, args.title)
-                                putString(VideoActivity.SITE, result.data[0].site)
-                                putString(VideoActivity.TYPE, result.data[0].type)
-                            })
+                                putString(VideoActivity.NAME, args.title) })
                         }
                     )
                 }

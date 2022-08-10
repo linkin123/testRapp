@@ -48,8 +48,6 @@ class VideoActivity : YouTubeBaseActivity() {
     private fun setUpInfo(extras: Bundle?) {
         with(binding){
             mToolbar.actionBar.tvTitle.text = extras?.getString(NAME)
-            tvValueType.text = extras?.getString(TYPE)
-            tvSiteValue.text = extras?.getString(SITE)
         }
     }
 
@@ -63,11 +61,8 @@ class VideoActivity : YouTubeBaseActivity() {
                 youtubePlayer?.loadVideo(key)
             }
 
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Log.d("TAG", "error al reproducri el video ")
+            override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
+                Log.d("TAG", "error al reproducir el video ")
             }
         }
         binding.videoPlayer.initialize(YoutubeConfig.secret, mOnListener)
