@@ -1,0 +1,8 @@
+PRINCIPIO DE RESPONSABILIDAD UNICA
+    cada componente, módulo, objeto o clase debe tener una única función, su propósito es hacer que el código sea dividido en pequeños pedazos
+    para poder ser reusado si se requiere una funcionalidad igual en otro lugar y sea más claro entender.
+
+
+CARACTERISTICAS DE UN CPDIGO LIMPIO:
+    el codigo debe ser escalable, fragmentado, reutilizable, claro y consiso.
+
