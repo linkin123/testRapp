@@ -17,6 +17,8 @@ object AppConstants {
     const val  NA = "na"
     const val  CO = "co"
     const val  SO = "so"
+    const val  LP = "lp"
+    const val  CA = "ca"
     const val  ENGLISH = "Inglés"
     const val  KOREAN = "Koreano"
     const val  SPANISH = "Español"
@@ -25,5 +27,6 @@ object AppConstants {
     const val  ELSE = "otro"
 
     const val  DIALOG = "dialog"
+    /*archivo modificado*/
 
 }
