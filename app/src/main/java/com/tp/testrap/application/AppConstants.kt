@@ -17,6 +17,7 @@ object AppConstants {
     const val  NA = "na"
     const val  CO = "co"
     const val  LP = "lp"
+    const val  CA = "ca"
     const val  ENGLISH = "Inglés"
     const val  KOREAN = "Koreano"
     const val  SPANISH = "Español"
