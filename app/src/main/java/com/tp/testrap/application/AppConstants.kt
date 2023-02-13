@@ -25,5 +25,6 @@ object AppConstants {
     const val  ELSE = "otro"
 
     const val  DIALOG = "dialog"
+    /*archivo modificado*/
 
 }
