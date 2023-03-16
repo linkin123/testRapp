@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.tp.testrap.ui.movie.fragments.MovieFragment"
+        android:name="com.linkinsoft.testrap.ui.movie.fragments.MovieFragment"
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.tp.testrap.ui.movieDetail.MovieDetailFragment"
+        android:name="com.linkinsoft.testrap.ui.movieDetail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail">
         <argument
