@@ -27,6 +27,7 @@ import com.tp.testrap.core.Resource
 import com.tp.testrap.data.model.Movie
 import com.tp.testrap.databinding.FragmentMovieBinding
 import com.tp.testrap.presentation.MovieViewModel
+import com.tp.testrap.presentation.MovieViewModelUC
 import com.tp.testrap.ui.gone
 import com.tp.testrap.ui.movie.adapters.GenericAdapter
 import com.tp.testrap.ui.movie.adapters.MoviesListAdapter
@@ -45,7 +46,7 @@ enum class TypeSearch {
 @AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
     private lateinit var binding: FragmentMovieBinding
-    private val viewModel by viewModels<MovieViewModel>()
+    private val viewModel by viewModels<MovieViewModelUC>()
     private lateinit var concatAdapter: ConcatAdapter
     private var popularAdapter = MoviesListAdapter(this)
     private var topRaitedAdapter = MoviesListAdapter(this)
@@ -115,48 +116,48 @@ class MovieFragment : Fragment(R.layout.fragment_movie), OnOption {
     }
 
     private fun observers() {
-        concatAdapter = ConcatAdapter()
-        viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Resource.Loading -> {
-                    binding.progressBar.visible()
-                }
-                is Resource.Success -> {
-                    binding.progressBar.gone()
-                    with(result.data) {
-                        popularList = first.results
-                        topRaitedList = second.results
-                        recommendedForYouList = second.results.take(6)
-                        upComingList = third.results
-                    }
-                    submitList(popularList, topRaitedList, upComingList, recommendedForYouList)
 
-                    concatAdapter.apply {
-                        addAdapter(
-                            0, GenericAdapter(upComingAdapter, TypeAdapter.UP_COMING)
-                        )
-                        addAdapter(
-                            1, GenericAdapter(topRaitedAdapter, TypeAdapter.TOP_RAITED)
-                        )
-                        addAdapter(
-                            2, GenericAdapter(popularAdapter, TypeAdapter.POPULAR)
-                        )
+        viewModel.apply {
+            concatAdapter = ConcatAdapter()
+            fetchMainScreenMovies()
+            progress.observe(viewLifecycleOwner){progress->
+                binding.progressBar.apply {
+                    if(progress){
+                        visible()
+                    }else{
+                        gone()
                     }
-                    binding.rvMovies.adapter = concatAdapter
-                    with(binding.rvMoviesRecommemdedForYou) {
-                        layoutManager = GridLayoutManager(context, 3)
-                        adapter = recommendedFourYouAdapter
-                    }
+                }
+            }
+            movies.observe(viewLifecycleOwner) { result ->
+                popularList = result.first.results
+                topRaitedList = result.second.results
+                recommendedForYouList = result.second.results.take(6)
+                upComingList = result.third.results
 
+
+                submitList(popularList, topRaitedList, upComingList, recommendedForYouList)
+                concatAdapter.apply {
+                    addAdapter(
+                        0, GenericAdapter(upComingAdapter, TypeAdapter.UP_COMING)
+                    )
+                    addAdapter(
+                        1, GenericAdapter(topRaitedAdapter, TypeAdapter.TOP_RAITED)
+                    )
+                    addAdapter(
+                        2, GenericAdapter(popularAdapter, TypeAdapter.POPULAR)
+                    )
                 }
-                is Resource.Failure -> {
-                    binding.progressBar.gone()
-                    Snackbar.make(binding.root, "${result.exception}", Snackbar.LENGTH_SHORT)
-                    Log.d("LiveData", "${result.exception}")
+                binding.rvMovies.adapter = concatAdapter
+                with(binding.rvMoviesRecommemdedForYou) {
+                    layoutManager = GridLayoutManager(context, 3)
+                    adapter = recommendedFourYouAdapter
                 }
+
             }
         }
     }
+
 
     private fun submitList(
         popularList: List<Movie>,
@@ -230,3 +231,51 @@ private fun String.completeString(): String {
 private fun List<Movie>.getFilterWith(text: String): List<Movie> {
     return this.filter { it.title.contains(text, true) }
 }
+
+/*
+
+
+    viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner)
+    {
+        result ->
+        when (result) {
+            is Resource.Loading -> {
+                binding.progressBar.visible()
+            }
+            is Resource.Success -> {
+                binding.progressBar.gone()
+                with(result.data) {
+                    popularList = first.results
+                    topRaitedList = second.results
+                    recommendedForYouList = second.results.take(6)
+                    upComingList = third.results
+                }
+                submitList(popularList, topRaitedList, upComingList, recommendedForYouList)
+
+                concatAdapter.apply {
+                    addAdapter(
+                        0, GenericAdapter(upComingAdapter, TypeAdapter.UP_COMING)
+                    )
+                    addAdapter(
+                        1, GenericAdapter(topRaitedAdapter, TypeAdapter.TOP_RAITED)
+                    )
+                    addAdapter(
+                        2, GenericAdapter(popularAdapter, TypeAdapter.POPULAR)
+                    )
+                }
+                binding.rvMovies.adapter = concatAdapter
+                with(binding.rvMoviesRecommemdedForYou) {
+                    layoutManager = GridLayoutManager(context, 3)
+                    adapter = recommendedFourYouAdapter
+                }
+
+            }
+            is Resource.Failure -> {
+                binding.progressBar.gone()
+                Snackbar.make(binding.root, "${result.exception}", Snackbar.LENGTH_SHORT)
+                Log.d("LiveData", "${result.exception}")
+            }
+        }
+    }
+
+ */
