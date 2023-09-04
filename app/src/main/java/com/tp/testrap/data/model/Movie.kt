@@ -29,33 +29,33 @@ data class MovieList(
 @Entity
 data class MovieEntity(
     @PrimaryKey
-    val id: Int = -1,
+    var id: Int = -1,
     @ColumnInfo(name = "adult")
-    val adult: Boolean = false,
+    var adult: Boolean = false,
     @ColumnInfo(name = "backdrop_path")
-    val backdrop_path: String = "",
+    var backdrop_path: String = "",
     @ColumnInfo(name = "original_tittle")
-    val original_tittle: String = "",
+    var original_tittle: String = "",
     @ColumnInfo(name = "original_languge")
-    val original_languge: String = "",
+    var original_languge: String = "",
     @ColumnInfo(name = "overview")
-    val overview: String = "",
+    var overview: String = "",
     @ColumnInfo(name = "popularity")
-    val popularity: Double = -1.0,
+    var popularity: Double = -1.0,
     @ColumnInfo(name = "poster_path")
-    val poster_path: String = "",
+    var poster_path: String = "",
     @ColumnInfo(name = "release_date")
-    val release_date: String = "",
+    var release_date: String = "",
     @ColumnInfo(name = "tittle")
-    val tittle: String = "",
+    var tittle: String = "",
     @ColumnInfo(name = "video")
-    val video: Boolean = false,
+    var video: Boolean = false,
     @ColumnInfo(name = "vote_average")
-    val vote_average: Float = 0F,
+    var vote_average: Float = 0F,
     @ColumnInfo(name = "vote_count")
-    val vote_count: Int = -1,
+    var vote_count: Int = -1,
     @ColumnInfo(name = "movie_type")
-    val movie_type: String = ""
+    var movie_type: String = ""
 )
 
 fun List<MovieEntity>.toMovieList() : MovieList{

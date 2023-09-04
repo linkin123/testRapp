@@ -5,7 +5,6 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
-import com.tp.testrap.BuildConfig
 import com.tp.testrap.application.AppConstants
 import com.tp.testrap.repository.WebService
 import dagger.Module
@@ -43,10 +42,8 @@ object ApiModuleServiceGenerator {
         try {
 
             builder.hostnameVerifier { hostname, session ->
-                if (!BuildConfig.DEBUG) {
-                    val hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier()
-                    return@hostnameVerifier hostnameVerifier.verify(hostname, session)
-                }
+                val hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier()
+                return@hostnameVerifier hostnameVerifier.verify(hostname, session)
                 true
             }
 
@@ -66,14 +63,12 @@ object ApiModuleServiceGenerator {
                     .log(Platform.INFO)
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
-                    .addHeader("version", BuildConfig.VERSION_NAME)
                     .request("Request")
                     .response("Response")
                     .log(Log.VERBOSE)
                     .build()
             )
     }
-
 
 
 }
