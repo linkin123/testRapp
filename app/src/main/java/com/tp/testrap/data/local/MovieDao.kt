@@ -10,9 +10,9 @@ import com.tp.testrap.data.model.MovieEntity
 interface MovieDao {
 
     @Query("SELECT * FROM MovieEntity")
-    suspend fun getAllMovies() : List<MovieEntity>
+    fun getAllMovies() : List<MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveMovie(movieEntity: MovieEntity)
+    fun saveMovie(movieEntity: MovieEntity)
 
 }
