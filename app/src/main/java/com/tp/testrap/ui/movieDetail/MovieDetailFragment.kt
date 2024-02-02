@@ -3,6 +3,7 @@ package com.tp.testrap.ui.movieDetail
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.compose.material.MaterialTheme
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,7 +28,13 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMovieDetailAnimBinding.bind(view)
+        binding = FragmentMovieDetailAnimBinding.bind(view).apply {
+            contentLayout.composeView.setContent {
+                MaterialTheme{
+                    DescriptionContent(args)
+                }
+            }
+        }
         onclicks()
         setUpImages()
     }
@@ -38,7 +45,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.
             imgMovie.loadImage("${BASE_IMAGE}${args.posterImageUrl}")
             imgBackground.loadImage("${BASE_IMAGE}${args.backgroundIMageUrl}")
             toolbar.title = args.title
-            contentLayout.txtOverview.text = args.overview
             contentLayout.tvLanguage.text = args.language
             contentLayout.tvYear.text = args.releaseDate.substring(0, 4)
             contentLayout.tvRaiting.text = args.voteAverage.toString()
