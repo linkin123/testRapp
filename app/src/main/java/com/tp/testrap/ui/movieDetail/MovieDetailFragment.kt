@@ -45,9 +45,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail_anim), View.
             imgMovie.loadImage("${BASE_IMAGE}${args.posterImageUrl}")
             imgBackground.loadImage("${BASE_IMAGE}${args.backgroundIMageUrl}")
             toolbar.title = args.title
-            contentLayout.tvLanguage.text = args.language
-            contentLayout.tvYear.text = args.releaseDate.substring(0, 4)
-            contentLayout.tvRaiting.text = args.voteAverage.toString()
         }
     }
 
